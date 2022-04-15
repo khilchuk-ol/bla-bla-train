@@ -16,34 +16,11 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        val fromInput: TextInputEditText = findViewById(R.id.fromInput)
-        val toInput: TextInputEditText = findViewById(R.id.toInput)
-        val timeInput: RadioGroup = findViewById(R.id.timeInput)
-
-        val okButton: Button = findViewById(R.id.okButton)
-        okButton.setOnClickListener {
-            val chosenTimeBtn: RadioButton? = findViewById(timeInput.checkedRadioButtonId)
-
-            if (!isTextInputValid(fromInput.text.toString()) ||
-                !isTextInputValid(toInput.text.toString()) ||
-                chosenTimeBtn == null ||
-                chosenTimeBtn.text.toString().isEmpty()) {
-
-                val toast = Toast.makeText(applicationContext, "Для підтвердження потрібно заповнити всі поля коректно", Toast.LENGTH_SHORT)
-                toast.setGravity(Gravity.BOTTOM, 0, 0)
-                toast.show()
-            } else {
-                val tripInfoMsg = "Ви обрали таку поїздку: \n  час    : " + chosenTimeBtn.text.toString() + " \n  маршрут: " + fromInput.text.toString() + " -> " + toInput.text.toString()
-
-                val toast = Toast.makeText(applicationContext, tripInfoMsg, Toast.LENGTH_SHORT)
-                toast.setGravity(Gravity.BOTTOM, 0, 0)
-                toast.show()
-            }
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragment_container_view, FormFragment::class.java, null)
+                .add(R.id.fragment_container_view, TripInfoFragment::class.java, null)
+                .commit()
         }
-    }
-
-    private fun isTextInputValid(str: String?): Boolean {
-        val regex = """^[^A-Za-z]+$""".toRegex()
-        return str != null && str.isNotEmpty() && !regex.matches(str)
     }
 }
