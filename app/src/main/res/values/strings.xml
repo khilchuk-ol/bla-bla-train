@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">bla-bla-train</string>
+    <string name="app_name">BlaBlaTrain</string>
+
+    <string name="from_input_hint">пункт відправлення</string>
+    <string name="to_input_hint">пункт прибуття</string>
+
+    <string name="dep_time_1">00:00</string>
+    <string name="dep_time_2">08:00</string>
+    <string name="dep_time_3">12:00</string>
+    <string name="dep_time_4">16:00</string>
+    <string name="dep_time_5">20:00</string>
 </resources>
